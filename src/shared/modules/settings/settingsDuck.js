@@ -62,12 +62,14 @@ export const shouldEditorAutocomplete = state =>
   state[NAME].editorAutocomplete !== false
 export const shouldUseCypherThread = state => state[NAME].useCypherThread
 
+// Nemesis constantes
+const nemesisCmd = ':nemesis start' // ':play start'
 const initialState = {
   cmdchar: ':',
   maxHistory: 30,
   theme: 'normal',
   useBoltRouting: false,
-  initCmd: ':play start',
+  initCmd: nemesisCmd,
   initialNodeDisplay: 300,
   maxNeighbours: 100,
   showSampleScripts: true,

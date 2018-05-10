@@ -48,7 +48,8 @@ import { jmxEpic } from './modules/jmx/jmxDuck'
 import { cancelRequestEpic } from './modules/requests/requestsDuck'
 import {
   discoveryOnStartupEpic,
-  injectDiscoveryEpic
+  injectDiscoveryEpic,
+  discoveryOnStartupForNemesisEpic
 } from './modules/discovery/discoveryDuck'
 import { clearLocalstorageEpic } from './modules/localstorage/localstorageDuck'
 import { populateEditorFromUrlEpic } from './modules/editor/editorDuck'
@@ -79,6 +80,7 @@ import {
   eventFiredEpic
 } from './modules/udc/udcDuck'
 import { maxFramesConfigEpic } from './modules/stream/streamDuck'
+import { onNemesisStartupEpic } from './modules/nemesis/nemesisDuck'
 
 export default combineEpics(
   handleCommandsEpic,
@@ -126,5 +128,8 @@ export default combineEpics(
   trackSyncLogoutEpic,
   trackConnectsEpic,
   eventFiredEpic,
-  maxFramesConfigEpic
+  maxFramesConfigEpic,
+  // Nemesis epics
+  discoveryOnStartupForNemesisEpic,
+  onNemesisStartupEpic
 )

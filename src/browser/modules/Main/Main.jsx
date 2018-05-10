@@ -41,20 +41,20 @@ const Main = props => {
   return (
     <StyledMain data-test-id='main'>
       <Editor />
-      <Render if={props.showUnknownCommandBanner}>
+      {/* <Render if={props.showUnknownCommandBanner}>
         <ErrorBanner>
           Type&nbsp;
           <ClickToCode CodeComponent={StyledCodeBlockErrorBar}>
             {props.cmdchar}help commands
           </ClickToCode>&nbsp; for a list of available commands.
         </ErrorBanner>
-      </Render>
+      </Render> */}
       <Render if={props.errorMessage}>
         <ErrorBanner data-test-id='errorBanner'>
           {props.errorMessage}
         </ErrorBanner>
       </Render>
-      <Render if={props.connectionState === DISCONNECTED_STATE}>
+      {/* <Render if={props.connectionState === DISCONNECTED_STATE}>
         <NotAuthedBanner>
           Database access not available. Please use&nbsp;
           <ClickToCode CodeComponent={StyledCodeBlockAuthBar}>
@@ -62,18 +62,20 @@ const Main = props => {
           </ClickToCode>&nbsp; to establish connection. There's a graph waiting
           for you.
         </NotAuthedBanner>
-      </Render>
+      </Render> */}
       <Render if={props.connectionState === PENDING_STATE}>
         <WarningBanner>
           Connection to server lost. Reconnecting...
         </WarningBanner>
       </Render>
+      {/*
       <Render if={props.useBrowserSync}>
         <SyncReminderBanner />
       </Render>
       <Render if={props.useBrowserSync}>
         <SyncConsentBanner />
       </Render>
+      */}
       <Stream />
     </StyledMain>
   )

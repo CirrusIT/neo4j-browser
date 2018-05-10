@@ -296,7 +296,7 @@ module.exports = {
     contentBase: isProduction ? './build' : './src/browser',
     historyApiFallback: true,
     disableHostCheck: true,
-    port: 8080,
+    port: 9090,
     compress: isProduction,
     inline: !isProduction,
     hot: !isProduction,

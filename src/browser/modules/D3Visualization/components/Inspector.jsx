@@ -140,7 +140,9 @@ export class InspectorComponent extends Component {
           </StyledInlineList>
         )
       } else if (type === 'canvas') {
-        const description = `Displaying ${item.nodeCount} nodes, ${item.relationshipCount} relationships.`
+        const description = `Mostrando ${item.nodeCount} nodos, ${
+          item.relationshipCount
+        } relaciones.`
         inspectorContent = (
           <StyledInlineList className='list-inline'>
             <StyledInspectorFooterRowListPair className='pair' key='pair'>

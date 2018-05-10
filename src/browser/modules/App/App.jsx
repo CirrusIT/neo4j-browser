@@ -109,27 +109,8 @@ class App extends Component {
     return (
       <ThemeProvider theme={themeData}>
         <StyledWrapper>
-          <DocTitle titleString={this.props.titleString} />
-          <UserInteraction />
-          <DesktopIntegration
-            integrationPoint={this.props.desktopIntegrationPoint}
-            onMount={this.props.setInitialConnectionData}
-            onGraphActive={this.props.switchConnection}
-            onGraphInactive={this.props.closeConnectionMaybe}
-          />
-          <Render if={loadExternalScripts}>
-            <Intercom appID='lq70afwx' />
-          </Render>
-          <Render if={syncConsent && loadExternalScripts && loadSync}>
-            <BrowserSyncInit
-              authStatus={browserSyncAuthStatus}
-              authData={browserSyncMetadata}
-              config={browserSyncConfig}
-            />
-          </Render>
           <StyledApp>
             <StyledBody>
-              <Sidebar openDrawer={drawer} onNavClick={handleNavClick} />
               <StyledMainWrapper>
                 <Main
                   cmdchar={cmdchar}

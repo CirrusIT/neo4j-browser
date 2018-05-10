@@ -63,6 +63,9 @@ import commandsReducer, {
 } from 'shared/modules/commands/commandsDuck'
 import udcReducer, { NAME as udc } from 'shared/modules/udc/udcDuck'
 import appReducer, { NAME as app } from 'shared/modules/app/appDuck'
+import nemesisReducer, {
+  NAME as nemesis
+} from 'shared/modules/nemesis/nemesisDuck'
 
 export default {
   [connections]: connectionsReducer,
@@ -84,5 +87,6 @@ export default {
   [syncMetadata]: syncMetaDataReducer,
   [commands]: commandsReducer,
   [udc]: udcReducer,
-  [app]: appReducer
+  [app]: appReducer,
+  [nemesis]: nemesisReducer
 }

@@ -103,7 +103,7 @@ export const injectDiscoveryEpic = (action$, store) =>
 
 export const discoveryOnStartupEpic = (some$, store) => {
   return some$
-    .ofType(APP_START)
+    .ofType(APP_START + 'DISABLED')
     .map(action => {
       if (!action.url) return action
       const passedURL = getUrlParamValue('connectURL', action.url)
@@ -119,25 +119,39 @@ export const discoveryOnStartupEpic = (some$, store) => {
         updateDiscoveryState({ ...action, username, password }, store)
         return Promise.resolve({ type: DONE })
       }
-      return Rx.Observable
-        .fromPromise(
-          remote
-            .getJSON(getDiscoveryEndpoint())
-            .then(result => {
-              // Try to get info from server
-              if (!result || !result.bolt) {
-                throw new Error('No bolt address found') // No bolt info from server, throw
-              }
-              store.dispatch(updateDiscoveryConnection({ host: result.bolt })) // Update discovery host in redux
-              return { type: DONE }
-            })
-            .catch(e => {
-              throw new Error('No info from endpoint') // No info from server, throw
-            })
-        )
-        .catch(e => {
-          return Promise.resolve({ type: DONE })
-        })
+      return Rx.Observable.fromPromise(
+        remote
+          .getJSON(getDiscoveryEndpoint())
+          .then(result => {
+            // Try to get info from server
+            if (!result || !result.bolt) {
+              throw new Error('No bolt address found') // No bolt info from server, throw
+            }
+            store.dispatch(updateDiscoveryConnection({ host: result.bolt })) // Update discovery host in redux
+            return { type: DONE }
+          })
+          .catch(e => {
+            throw new Error('No info from endpoint') // No info from server, throw
+          })
+      ).catch(e => {
+        return Promise.resolve({ type: DONE })
+      })
     })
     .map(a => a)
+}
+
+export const discoveryOnStartupForNemesisEpic = (some$, store) => {
+  return some$
+    .ofType(APP_START)
+    .map(action => {
+      // TODO Fixme read values from coockie or local storage
+      action.forceURL = 'bolt://localhost:7687'
+      action.username = 'admin'
+      action.password = 'admin'
+      return action
+    })
+    .mergeMap(action => {
+      updateDiscoveryState(action, store)
+      return Promise.resolve({ type: DONE })
+    })
 }

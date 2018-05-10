@@ -169,22 +169,22 @@ export const AboutIcon = ({ isOpen }) => (
 )
 
 export const TableIcon = () => (
-  <IconContainer className='fa fa-table' text='Table' />
+  <IconContainer className='fa fa-table' text='Tabla' />
 )
 export const VisualizationIcon = () => (
-  <IconContainer className='nw nw-neo4j-outline-16px' text='Graph' />
+  <IconContainer className='nw nw-neo4j-outline-16px' text='Grafo' />
 )
 export const AsciiIcon = () => (
-  <IconContainer className='fa fa-font' text='Text' />
+  <IconContainer className='fa fa-font' text='Texto' />
 )
 export const CodeIcon = () => (
-  <IconContainer className='fa fa-code' text='Code' />
+  <IconContainer className='fa fa-code' text='Código' />
 )
 export const PlanIcon = () => (
   <IconContainer className='sl-hierarchy' text='Plan' />
 )
 export const AlertIcon = () => (
-  <IconContainer className='sl-alert' text='Warn' />
+  <IconContainer className='sl-alert' text='Alerta' />
 )
 export const ErrorIcon = () => (
   <IconContainer className='fa fa-file-text-o' text='Error' />
