@@ -59,6 +59,7 @@ import {
   parseGrass
 } from 'shared/modules/commands/helpers/grass'
 import { shouldUseCypherThread } from 'shared/modules/settings/settingsDuck'
+import { UPDATE_NEMESIS_STYLE_DATA } from 'src-root/shared/modules/grass/grassDuck'
 
 const availableCommands = [
   {
@@ -324,6 +325,133 @@ const availableCommands = [
           put(showErrorMessage('Could not parse grass data'))
         }
       }
+    }
+  },
+  {
+    name: 'nemesis',
+    match: cmd => /^nemesis(\s|$)/.test(cmd),
+    exec: (action, cmdchar, put) => {
+      put({
+        type: UPDATE_NEMESIS_STYLE_DATA,
+        styleData: {
+          node: {
+            diameter: '50px',
+            color: '#A5ABB6',
+            'border-color': '#9AA1AC',
+            'border-width': '2px',
+            'text-color-internal': '#FFFFFF',
+            'font-size': '10px'
+          },
+          relationship: {
+            color: '#A5ABB6',
+            'shaft-width': '1px',
+            'font-size': '8px',
+            padding: '3px',
+            'text-color-external': '#5cd7f6',
+            'text-color-internal': '#FFFFFF',
+            caption: '<type>'
+          },
+          'relationship.PCC01': {
+            color: '#A5ABB6',
+            'shaft-width': '2px',
+            'font-size': '8px',
+            padding: '3px',
+            'text-color-external': '#5cd7f6',
+            'text-color-internal': '#FFFFFF',
+            caption: '{monto_bs} Bs'
+          },
+          'relationship.ALLEGADO': {
+            color: '#acb6a4',
+            'shaft-width': '2px',
+            'font-size': '8px',
+            padding: '3px',
+            'text-color-external': '#5cd7f6',
+            'text-color-internal': '#FFFFFF',
+            caption: '{tipo_allegado}'
+          },
+          'relationship.INGRESO_DIVISA': {
+            color: '#b6b081',
+            'shaft-width': '2px',
+            'font-size': '8px',
+            padding: '3px',
+            'text-color-external': '#5cd7f6',
+            'text-color-internal': '#FFFFFF',
+            caption: '{monto}'
+          },
+          'relationship.SALIDA_DIVISA': {
+            color: '#89b2b6',
+            'shaft-width': '2px',
+            'font-size': '8px',
+            padding: '3px',
+            'text-color-external': '#5cd7f6',
+            'text-color-internal': '#FFFFFF',
+            caption: '{monto}'
+          },
+          'relationship.PCC06': {
+            color: '#acb658',
+            'shaft-width': '1px',
+            'font-size': '8px',
+            padding: '3px',
+            'text-color-external': '#5cd7f6',
+            'text-color-internal': '#FFFFFF',
+            caption: '{monto_bs} Bs'
+          },
+          'relationship.PCC07': {
+            color: '#eef641',
+            'shaft-width': '1px',
+            'font-size': '8px',
+            padding: '3px',
+            'text-color-external': '#5cd7f6',
+            'text-color-internal': '#FFFFFF',
+            caption: '{monto_bs} Bs'
+          },
+          'relationship.PCC08': {
+            color: '#cfffbb',
+            'shaft-width': '1px',
+            'font-size': '8px',
+            padding: '3px',
+            'text-color-external': '#5cd7f6',
+            'text-color-internal': '#FFFFFF',
+            caption: '{monto_bs} Bs'
+          },
+          'node.*': {
+            color: '#68BDF6',
+            'border-color': '#5CA8DB',
+            'text-color-internal': '#FFFFFF',
+            defaultCaption: '<type>'
+          },
+          'node.Persona': {
+            color: '#5cd7f6',
+            'border-color': '#5CA8DB',
+            'text-color-internal': '#4d4d4d',
+            caption: '{nombre_principal}',
+            defaultCaption: '{nombre_principal}'
+          },
+          'node.Vinculado': {
+            color: '#f6b45f',
+            'border-color': '#ec848a',
+            'text-color-internal': '#4d4d4d',
+            caption: '{nombre_principal}',
+            defaultCaption: '{nombre_principal}'
+          },
+          'node.Principal': {
+            color: '#d1d935',
+            'border-color': '#ec848a',
+            'text-color-internal': '#4d4d4d',
+            caption: '{nombre_principal}',
+            defaultCaption: '{nombre_principal}'
+          },
+          'node.Pais': {
+            color: '#cfffbb',
+            'border-color': '#ec848a',
+            'text-color-internal': '#4d4d4d',
+            caption: '{pais}',
+            defaultCaption: '{pais}'
+          }
+        }
+      })
+      // put(showErrorMessage('NEMESIS COMMAND'))
+      // put(unknownCommand(action.cmd))
     }
   },
   {

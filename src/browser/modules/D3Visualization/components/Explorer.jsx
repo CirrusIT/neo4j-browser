@@ -45,6 +45,7 @@ export class ExplorerComponent extends Component {
   constructor (props) {
     super(props)
     const graphStyle = neoGraphStyle()
+    console.log(this.props)
     let relationships = this.props.relationships
     let nodes = deduplicateNodes(this.props.nodes)
     let selectedItem = ''
@@ -55,9 +56,9 @@ export class ExplorerComponent extends Component {
       })
       selectedItem = {
         type: 'status-item',
-        item: `Not all return nodes are being displayed due to Initial Node Display setting. Only ${this
-          .props
-          .initialNodeDisplay} of ${nodes.length} nodes are being displayed`
+        item: `Not all return nodes are being displayed due to Initial Node Display setting. Only ${
+          this.props.initialNodeDisplay
+        } of ${nodes.length} nodes are being displayed`
       }
     }
     if (this.props.graphStyleData) {
@@ -86,8 +87,9 @@ export class ExplorerComponent extends Component {
           this.setState({
             selectedItem: {
               type: 'status-item',
-              item: `Rendering was limited to ${this.props
-                .maxNeighbours} of the node's total ${result.count +
+              item: `Rendering was limited to ${
+                this.props.maxNeighbours
+              } of the node's total ${result.count +
                 currentNeighbours.length} neighbours due to browser config maxNeighbours.`
             }
           })

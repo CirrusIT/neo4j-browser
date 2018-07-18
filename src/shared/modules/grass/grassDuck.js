@@ -23,6 +23,7 @@ import { APP_START } from 'shared/modules/app/appDuck'
 
 export const NAME = 'grass'
 export const UPDATE_GRAPH_STYLE_DATA = 'grass/UPDATE_GRAPH_STYLE_DATA'
+export const UPDATE_NEMESIS_STYLE_DATA = 'grass/UPDATE_NEMESIS_STYLE_DATA'
 export const SYNC_GRASS = 'grass/SYNC_GRASS'
 
 export const getGraphStyleData = state => state[NAME]
@@ -63,6 +64,8 @@ export default function visualization (state = initialState, action) {
   }
   switch (action.type) {
     case UPDATE_GRAPH_STYLE_DATA:
+      return updateStyleData(state, action.styleData)
+    case UPDATE_NEMESIS_STYLE_DATA:
       return updateStyleData(state, action.styleData)
     default:
       return state

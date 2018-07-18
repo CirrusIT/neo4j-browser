@@ -165,6 +165,7 @@ class FrameTitlebar extends Component {
           >
             {expandCollapseIcon}
           </FrameButton>
+          {/*
           <Render if={frame.type === 'cypher'}>
             <FrameButton
               title='Rerun'
@@ -174,6 +175,7 @@ class FrameTitlebar extends Component {
               <RefreshIcon />
             </FrameButton>
           </Render>
+          */}
           <FrameButton
             title='Close'
             onClick={() => props.onCloseClick(frame.id, frame.requestId)}
@@ -205,4 +207,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-export default withBus(connect(null, mapDispatchToProps)(FrameTitlebar))
+export default withBus(
+  connect(
+    null,
+    mapDispatchToProps
+  )(FrameTitlebar)
+)

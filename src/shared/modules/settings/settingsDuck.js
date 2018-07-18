@@ -67,7 +67,7 @@ const nemesisCmd = ':nemesis start' // ':play start'
 const initialState = {
   cmdchar: ':',
   maxHistory: 30,
-  theme: 'normal',
+  theme: 'dark', // 'normal'
   useBoltRouting: false,
   initCmd: nemesisCmd,
   initialNodeDisplay: 300,

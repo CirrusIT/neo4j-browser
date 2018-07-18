@@ -44,6 +44,7 @@ import { ErrorsViewBus as ErrorsView, ErrorsStatusbar } from './ErrorsView'
 import { WarningsView, WarningsStatusbar } from './WarningsView'
 import { PlanView, PlanStatusbar } from './PlanView'
 import { VisualizationConnectedBus } from './VisualizationView'
+import { NemesisConnectedBus } from './NemesisView'
 import Render from 'browser-components/Render'
 import Display from 'browser-components/Display'
 import * as viewTypes from 'shared/modules/stream/frameViewTypes'
@@ -290,7 +291,7 @@ export class CypherFrame extends Component {
           />
         </Display>
         <Display if={this.state.openView === viewTypes.VISUALIZATION} lazy>
-          <VisualizationConnectedBus
+          <NemesisConnectedBus
             {...this.state}
             result={result}
             setParentState={this.setState.bind(this)}
@@ -415,4 +416,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CypherFrame)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CypherFrame)

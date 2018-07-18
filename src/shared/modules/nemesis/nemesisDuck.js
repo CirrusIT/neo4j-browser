@@ -13,6 +13,7 @@ import { executeCommand } from 'src-root/shared/modules/commands/commandsDuck'
 import { connectEpic } from 'src-root/shared/modules/connections/connectionsDuck'
 import { getEncryptionMode } from 'src-root/shared/services/bolt/boltHelpers'
 import bolt from 'src-root/shared/services/bolt/bolt'
+import { UPDATE_NEMESIS_STYLE_DATA } from 'src-root/shared/modules/grass/grassDuck'
 export const NAME = 'nemesis'
 
 const initialState = {
@@ -33,8 +34,7 @@ export function getConnectionData (state, id) {
 // Reducers
 export default function (state, action) {
   if (action.type === STARTUP_CONNECTION_FAILED) {
-    console.log(state, 'NEMESIS')
-    console.log(action, 'NEMESIS')
+    console.log('Startup failed')
   }
   state = { ...state, ...initialState }
   return state
@@ -42,10 +42,28 @@ export default function (state, action) {
 
 // Epics
 export const onNemesisStartupEpic = (action$, store) => {
-  let cmd =
-    'MATCH (e:Persona)<-[r:PCC01]- (f:Persona)\n' +
-    'WHERE e.id_persona=15493312\n' +
-    'RETURN e, f,r \n' +
-    'LIMIT 5;'
-  return action$.ofType(STARTUP_CONNECTION_SUCCESS).mapTo(executeCommand(cmd))
+  const api = {
+    fetchDatos: () => {
+      let request = fetch(window.localStorage.getItem('nemesis-bi'), {
+        credentials: 'same-origin'
+      }).then(response => response.json())
+      return Rx.Observable.fromPromise(request)
+    }
+  }
+  return action$.ofType(STARTUP_CONNECTION_SUCCESS).mergeMap(action =>
+    api
+      .fetchDatos() // This returns our Observable wrapping the Promise
+      .map(payload => {
+        let consulta = payload.consulta
+        window.localStorage.setItem(
+          'nemesis-vinculados',
+          JSON.stringify(payload.vinculados)
+        )
+        window.localStorage.setItem(
+          'nemesis-principal',
+          JSON.stringify(payload.principal)
+        )
+        return executeCommand(consulta)
+      })
+  )
 }

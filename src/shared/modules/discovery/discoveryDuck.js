@@ -145,8 +145,8 @@ export const discoveryOnStartupForNemesisEpic = (some$, store) => {
     .ofType(APP_START)
     .map(action => {
       // TODO Fixme read values from coockie or local storage
-      action.forceURL = 'bolt://localhost:7687'
-      action.username = 'admin'
+      action.forceURL = 'bolt://172.17.0.29:7687'
+      action.username = 'neo4j'
       action.password = 'admin'
       return action
     })

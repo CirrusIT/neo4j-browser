@@ -40,8 +40,9 @@ import SyncConsentBanner from './SyncConsentBanner'
 const Main = props => {
   return (
     <StyledMain data-test-id='main'>
+      {/*
       <Editor />
-      {/* <Render if={props.showUnknownCommandBanner}>
+      <Render if={props.showUnknownCommandBanner}>
         <ErrorBanner>
           Type&nbsp;
           <ClickToCode CodeComponent={StyledCodeBlockErrorBar}>

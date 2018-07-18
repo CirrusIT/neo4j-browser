@@ -33,7 +33,7 @@ export default function neoGraphStyle () {
       'shaft-width': '1px',
       'font-size': '8px',
       padding: '3px',
-      'text-color-external': '#000000',
+      'text-color-external': '#9e61ff',
       'text-color-internal': '#FFFFFF',
       caption: '<type>'
     }

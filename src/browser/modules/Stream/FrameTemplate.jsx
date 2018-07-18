@@ -40,16 +40,19 @@ class FrameTemplate extends Component {
     }
   }
   toggleFullScreen () {
-    this.setState(
-      { fullscreen: !this.state.fullscreen },
-      () =>
+    this.setState({ fullscreen: !this.state.fullscreen }, () => {
+      if (window.nemesisEvent) {
+        window.nemesisEvent('fullscreen', this.state.fullscreen)
+      }
+      return (
         this.props.onResize &&
         this.props.onResize(
           this.state.fullscreen,
           this.state.collapse,
           this.state.lastHeight
         )
-    )
+      )
+    })
   }
   toggleCollapse () {
     this.setState(

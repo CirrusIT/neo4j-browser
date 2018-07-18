@@ -54,7 +54,29 @@ export function mapRelationships (relationships, graph) {
 export function getGraphStats (graph) {
   let labelStats = {}
   let relTypeStats = {}
+  let vinculados = JSON.parse(window.localStorage.getItem('nemesis-vinculados'))
+  let principales = JSON.parse(window.localStorage.getItem('nemesis-principal'))
   graph.nodes().forEach(node => {
+    // console.log('Labels %o', node.propertyMap.id_persona_unica)
+    for (let i = 0; i < vinculados.length; i++) {
+      if (
+        node.propertyMap &&
+        node.propertyMap.id_persona_unica === vinculados[i].toString()
+      ) {
+        // console.log('Labels %o', node.labels)
+        node.labels = ['Vinculado']
+      }
+    }
+    for (let i = 0; i < principales.length; i++) {
+      if (
+        node.propertyMap &&
+        node.propertyMap.id_persona_unica === principales[i].toString()
+      ) {
+        // console.log('Labels %o', node.labels)
+        node.labels = ['Principal']
+      }
+    }
+
     node.labels.forEach(label => {
       if (labelStats['*']) {
         labelStats['*'].count = labelStats['*'].count + 1
